@@ -7,9 +7,9 @@ namespace TomieTechnologies.Controllers
     [Route("api/[controller]")]
     public class ProductController
     {
-        private readonly IOrderService _orderService;
+        private readonly IProductService _orderService;
 
-        public ProductController(IOrderService orderService)
+        public ProductController(IProductService orderService)
         {
             _orderService = orderService;
         }
