@@ -20,7 +20,7 @@ namespace TomieTechnologies.Services
             if (productToOrder.Availability == 0 || productToOrder.Availability < quantity)
             {
                 return new BadRequestObjectResult(
-                    $"Product with id: {productId} is out of stock or quantity requested is more than the available quantity");
+                    $"Product with id: {productId} is out of stock or quantity requested is more than the available quantity. Available: {productToOrder.Availability}");
             }
 
             var order = new OrderModel()
@@ -35,7 +35,7 @@ namespace TomieTechnologies.Services
 
             allProducts.Single(src => src.Id == productId).Availability -= quantity;
 
-            return new OkObjectResult($"Order created: {JsonSerializer.Serialize(order)}");
+            return new OkObjectResult($"Order placed successfully: Your order is {JsonSerializer.Serialize(order)}");
         }
 
         public async Task<IActionResult> GetOrders(CancellationToken cancellationToken = default)
